@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="0_mentorX_theme.css">
+    <style>
+      .container {
+        width: 240px;
+      }
+      .buttonsBox {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1px;
+        margin-left: 2%;
+      }
+      .buttonsBox button {
+        width: 50px;
+      }
+    </style>
+</head>
+<body>
+<header>
+    <img src="../../images/mentorX-logo.svg">
+</header>
+<div class="container">
+  <h1>Calculator</h1>
+    <input type="text" id="expression" oninput="updateDisplayValue()" autofocus placeholder="Input Expression">
+    <input type="text" id="result" disabled placeholder="Result">
+    <div class="buttonsBox">
+      <button onclick="clearDisplay()">C</button>
+      <button onclick="backspace()">←</button>
+      <button onclick="appendToDisplay('.')">.</button>
+      <button onclick="calculate()">=</button>
+      <button onclick="appendToDisplay('1')">1</button>
+      <button onclick="appendToDisplay('2')">2</button>
+      <button onclick="appendToDisplay('3')">3</button>
+      <button onclick="appendToDisplay('+')">+</button>
+      <button onclick="appendToDisplay('4')">4</button>
+      <button onclick="appendToDisplay('5')">5</button>
+      <button onclick="appendToDisplay('6')">6</button>
+      <button onclick="appendToDisplay('-')">-</button>
+      <button onclick="appendToDisplay('7')">7</button>
+      <button onclick="appendToDisplay('8')">8</button>
+      <button onclick="appendToDisplay('9')">9</button>
+      <button onclick="appendToDisplay('*')">*</button>
+      <button onclick="appendToDisplay('0')">0</button>
+      <button onclick="appendToDisplay('^')">^</button>
+      <button onclick="appendToDisplay('%')">%</button>
+      <button onclick="appendToDisplay('/')">/</button>
+     
+    </div>
+  </div>
+  
+  <script type="text/javascript">
+     let displayValue = '';
+  
+  function appendToDisplay(value) {
+    displayValue += value;
+    document.getElementById('expression').value = displayValue;
+  }
+  
+  function clearDisplay() {
+    displayValue = '';
+    document.getElementById('expression').value = '';
+    document.getElementById('result').value = '';
+  }
+
+  function updateDisplayValue() {
+    displayValue = document.getElementById('expression').value;
+  }
+
+  function backspace() {
+    displayValue = displayValue.slice(0, -1);
+    document.getElementById('expression').value = displayValue;
+  }
+
+  function calculate() {
+    try {
+      let result = eval(displayValue);
+      if (result === Infinity || isNaN(result)) {
+        document.getElementById('result').value = 'Error';
+      } else {
+        document.getElementById('result').value = result;
+      }
+      displayValue = result.toString();
+    } catch (error) {
+      document.getElementById('result').value = 'Error';
+      displayValue = '';
+    }
+  }
+  
+  </script>
+  </body>
+  </html>
