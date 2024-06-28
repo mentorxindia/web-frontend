@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>MentorX</title>
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="0_mentorX_theme.css">
 </head>
 <body>
@@ -15,15 +14,12 @@
         <h2>Mathematical Expression Evaluate</h2>
         <input id="expression" type="text" placeholder="Enter expression like 2+3*6">
         <button onclick="calculate()">Calculate</button>
-        <div id="result"></div>
+        <div id="result" class="result"></div>
     </div>
-    <footer id="footer-placeholder"></footer>
-    <script src="0_mentorX_theme.js"></script>
     <script>
       function calculate() {
         let expression = document.getElementById("expression").value;
-        let result = eval(expression)
-       // let sum = parseFloat(num1) + parseFloat(num2); // This will also work
+        let result = eval(expression);
         document.getElementById("result").innerHTML = "Result : " + result;
       }
     </script>        

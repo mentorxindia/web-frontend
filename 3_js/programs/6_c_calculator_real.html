@@ -26,8 +26,8 @@
     <img src="../../images/mentorX-logo.svg">
 </header>
 <div class="container">
-  <h1>Calculator</h1>
-    <input type="text" id="expression" oninput="updateDisplayValue()" autofocus placeholder="Input Expression">
+  <h2>Calculator</h2>
+    <input type="text" id="expression" placeholder="Input Math Expression">
     <input type="text" id="result" disabled placeholder="Result">
     <div class="buttonsBox">
       <button onclick="clearDisplay()">C</button>
@@ -55,43 +55,30 @@
   </div>
   
   <script type="text/javascript">
-     let displayValue = '';
   
   function appendToDisplay(value) {
-    displayValue += value;
-    document.getElementById('expression').value = displayValue;
+    document.getElementById('expression').value += value;
   }
   
   function clearDisplay() {
-    displayValue = '';
     document.getElementById('expression').value = '';
     document.getElementById('result').value = '';
   }
 
-  function updateDisplayValue() {
-    displayValue = document.getElementById('expression').value;
-  }
-
   function backspace() {
-    displayValue = displayValue.slice(0, -1);
-    document.getElementById('expression').value = displayValue;
+    let displayValue = document.getElementById('expression').value;
+    document.getElementById('expression').value = displayValue.slice(0, -1);
   }
 
-  function calculate() {
+ function calculate() {
+    let expression = document.getElementById("expression").value;
     try {
-      let result = eval(displayValue);
-      if (result === Infinity || isNaN(result)) {
-        document.getElementById('result').value = 'Error';
-      } else {
-        document.getElementById('result').value = result;
-      }
-      displayValue = result.toString();
-    } catch (error) {
-      document.getElementById('result').value = 'Error';
-      displayValue = '';
+      let result = eval(expression);
+      document.getElementById("result").value = "Result : " + result;
+    }catch (error) {
+        document.getElementById('result').value = error ;
     }
   }
-  
   </script>
   </body>
   </html>
